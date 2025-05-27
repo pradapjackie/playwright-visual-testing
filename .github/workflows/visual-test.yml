@@ -1,4 +1,4 @@
-name: Visual Tests
+name: Visual Regression Tests
 
 on:
   push:
@@ -25,14 +25,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
+      - name: Run Playwright test
         run: npm run test
 
-      - name: Compare screenshots
+      - name: Compare screenshots with Pixelmatch
         run: npm run compare
 
-      - name: Upload diff artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload visual diffs (if any)
+        uses: actions/upload-artifact@v4
         with:
-          name: diff-screenshot
+          name: visual-diff
           path: screenshots/diff/
