@@ -31,10 +31,11 @@ jobs:
       - name: Compare screenshots with Pixelmatch
         run: npm run compare
 
-      - name: Upload visual diffs (if any)
+      - name: Upload all screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: visual-diff
+          name: all-screenshots
           path: |
             screenshots/baseline/
             screenshots/actual/
